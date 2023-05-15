@@ -1,5 +1,5 @@
 // @ts-ignore
-import express, {Application, NextFunction, Request, Response, urlencoded} from "express"
+import express, {Application, urlencoded} from "express"
 // @ts-ignore
 import cors from "cors"
 import {Schema, model} from "mongoose"
@@ -18,7 +18,7 @@ app.use(express.urlencoded({extended: true}))
 
 
 // home route
-app.get('/api/v1/user', userRouter)
+app.use('/api/v1/user', userRouter)
 
 // default export
 export default app;
