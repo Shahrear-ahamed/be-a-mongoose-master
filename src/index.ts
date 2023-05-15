@@ -3,9 +3,6 @@ import mongoose from "mongoose";
 
 const port: number = 5000
 
-
-// use cors
-
 // database connection
 async function dbConnect() {
     try {
