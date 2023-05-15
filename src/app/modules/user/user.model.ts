@@ -1,8 +1,12 @@
 // model
-import {model, Schema} from "mongoose";
-import {IUser} from "./user.interface";
+import {Model, model, Schema} from "mongoose";
+import {IMethods, IUser} from "./user.interface";
 
-const userSchema = new Schema<IUser>({
+// Create a new Model type that knows about IUserMethods...
+type UserModel = Model<IUser, {}, IMethods>;
+
+
+const userSchema = new Schema<IUser, UserModel, IMethods>({
     id: {
         type: String,
         required: true,
@@ -59,5 +63,5 @@ const userSchema = new Schema<IUser>({
 })
 
 // model
-const User = model<IUser>("User", userSchema)
+const User = model<IUser, UserModel>("User", userSchema)
 export default User
