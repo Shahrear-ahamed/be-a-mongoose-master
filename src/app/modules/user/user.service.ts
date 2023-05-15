@@ -9,6 +9,10 @@ export const createUserToDB = async (payload: IUser): Promise<IUser> => {
 
 }
 
-export const getUsersController = async (): Promise<IUser[]> => {
+export const getUserService = async (): Promise<IUser[]> => {
     return User.find()
+}
+
+export const getUserByIdService = async (payload: string): Promise<IUser | null> => {
+    return User.findOne({id: payload}, {name: 1, contactNo: 1, email: 1});
 }
