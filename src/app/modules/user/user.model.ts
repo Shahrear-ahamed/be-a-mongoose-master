@@ -65,8 +65,11 @@ userSchema.method("fullName", function fullName() {
 });
 
 // statics
-userSchema.static("getAdminUser", async function getAdminUser() {
-    return this.find({role: "admin"});
+userSchema.static("getMaleUser", async function getMaleUser() {
+    return this.find({gender: "Male"});
+})
+userSchema.static("getFemaleUser", async function getFemaleUser() {
+    return this.find({gender: "Female"});
 })
 
 

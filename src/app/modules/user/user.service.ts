@@ -20,6 +20,14 @@ export const getUserByIdService = async (payload: string): Promise<IUser | null>
     return User.findOne({id: payload}, {name: 1, contactNo: 1, email: 1});
 }
 
-export const getAdminUser = async (): Promise<HydratedDocument<IUser, IMethods>> => {
-    return User.getAdminUser();
+// export const getMaleUserService = async (): Promise<IUser[]> => {
+//     console.log("HI")
+//     return User.find()
+// }
+export const getMaleUserService = async (): Promise<HydratedDocument<IUser, IMethods>> => {
+    return User.getMaleUser();
+}
+
+export const getFemaleUserService = async (): Promise<HydratedDocument<IUser, IMethods>> => {
+    return User.getFemaleUser();
 }

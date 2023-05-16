@@ -1,5 +1,11 @@
 import {Request, Response} from "express";
-import {createUserToDB, getUserByIdService, getUserService} from "./user.service";
+import {
+    createUserToDB,
+    getFemaleUserService,
+    getMaleUserService,
+    getUserByIdService,
+    getUserService
+} from "./user.service";
 
 export const createUserController = async (req: Request, res: Response) => {
     const userData = req.body;
@@ -28,5 +34,16 @@ export const getUserByIdController = async (req: Request, res: Response) => {
 
     // send response after database operation
     res.status(200).json({status: "OK", message: "Everything OK", data: singleUser})
+}
 
+export const getMaleUsers = async (req: Request, res: Response) => {
+    const maleUsers = await getMaleUserService()
+
+    res.status(200).json({status: "OK", message: "Everything OK", data: maleUsers})
+}
+
+
+export const getFemaleUsers = async (req: Request, res: Response) => {
+    const femaleUsers = await getFemaleUserService()
+    res.status(200).json({status: "OK", message: "Everything OK", data: femaleUsers})
 }

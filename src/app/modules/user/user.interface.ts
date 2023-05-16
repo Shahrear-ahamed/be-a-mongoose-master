@@ -26,5 +26,7 @@ export interface IMethods {
 
 // statics
 export interface UserModel extends Model<IUser, {}, IMethods> {
-    getAdminUser(): Promise<HydratedDocument<IUser, IMethods>>;
+    getMaleUser(): Promise<HydratedDocument<IUser, IMethods>>;
+
+    getFemaleUser(): Promise<HydratedDocument<IUser, IMethods>>;
 }
