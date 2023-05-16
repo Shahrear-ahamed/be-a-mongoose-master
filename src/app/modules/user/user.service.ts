@@ -1,5 +1,6 @@
 import User from "./user.model";
-import {IUser} from "./user.interface";
+import {IMethods, IUser} from "./user.interface";
+import {HydratedDocument} from "mongoose";
 
 export const createUserToDB = async (payload: IUser): Promise<IUser> => {
     const sampleUser = new User(payload)
@@ -17,4 +18,8 @@ export const getUserService = async (): Promise<IUser[]> => {
 
 export const getUserByIdService = async (payload: string): Promise<IUser | null> => {
     return User.findOne({id: payload}, {name: 1, contactNo: 1, email: 1});
+}
+
+export const getAdminUser = async (): Promise<HydratedDocument<IUser, IMethods>> => {
+    return User.getAdminUser();
 }

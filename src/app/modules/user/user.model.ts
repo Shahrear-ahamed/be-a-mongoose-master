@@ -1,9 +1,6 @@
 // model
-import {Model, model, Schema} from "mongoose";
-import {IMethods, IUser} from "./user.interface";
-
-// Create a new Model type that knows about IUserMethods...
-type UserModel = Model<IUser, {}, IMethods>;
+import {model, Schema} from "mongoose";
+import {IMethods, IUser, UserModel} from "./user.interface";
 
 
 const userSchema = new Schema<IUser, UserModel, IMethods>({
@@ -61,6 +58,17 @@ const userSchema = new Schema<IUser, UserModel, IMethods>({
         required: true,
     }
 })
+
+// instance methods
+userSchema.method("fullName", function fullName() {
+    return this.name.firstName + " " + this.name.lastName;
+});
+
+// statics
+userSchema.static("getAdminUser", async function getAdminUser() {
+    return this.find({role: "admin"});
+})
+
 
 // model
 const User = model<IUser, UserModel>("User", userSchema)
